@@ -1,0 +1,41 @@
+# Binaries
+bin/
+dist/
+build/
+out/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go workspace
+vendor/
+.coverprofile
+coverage.out
+*.coverprofile
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs / temp
+*.log
+tmp/
+temp/
+.cache/
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Redis / local runtime artifacts
+redis-data/
+
+# Generated docs or exports
+*.pdf
