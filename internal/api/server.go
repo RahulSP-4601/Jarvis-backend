@@ -1,0 +1,36 @@
+package api
+
+import (
+	"net/http"
+
+	"jarvis-backend/internal/ai"
+	"jarvis-backend/internal/config"
+)
+
+type Server struct {
+	config config.Config
+	ai     ai.Service
+	mux    *http.ServeMux
+}
+
+func NewServer(cfg config.Config) *Server {
+	mux := http.NewServeMux()
+	server := &Server{
+		config: cfg,
+		ai:     ai.NewService(cfg),
+		mux:    mux,
+	}
+	server.registerRoutes()
+
+	return server
+}
+
+func (s *Server) Handler() http.Handler {
+	return s.withCORS(s.mux)
+}
+
+func (s *Server) registerRoutes() {
+	s.mux.HandleFunc("GET /health", s.handleHealth)
+	s.mux.HandleFunc("POST /v1/research", s.handleResearch)
+	s.mux.HandleFunc("POST /v1/voice/command", s.handleVoiceCommand)
+}
