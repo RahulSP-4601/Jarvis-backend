@@ -5,7 +5,7 @@ import "net/http"
 func (s *Server) withCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		writer.Header().Set("Access-Control-Allow-Origin", s.config.AllowedOrigin)
-		writer.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		writer.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type")
 		writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
 		if request.Method == http.MethodOptions {
 			writer.WriteHeader(http.StatusNoContent)
