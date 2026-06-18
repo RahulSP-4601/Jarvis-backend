@@ -18,7 +18,7 @@ func (s *Server) handleResearch(writer http.ResponseWriter, request *http.Reques
 		return
 	}
 
-	response, err := s.respondToTranscript(request.Context(), payload.Transcript)
+	response, err := s.respondToResearchRequest(request.Context(), payload)
 	if err != nil {
 		writeJSON(writer, http.StatusBadGateway, map[string]string{"error": err.Error()})
 		return
@@ -40,7 +40,7 @@ func (s *Server) handleVoiceCommand(writer http.ResponseWriter, request *http.Re
 		return
 	}
 
-	response, err := s.respondToTranscript(request.Context(), transcript)
+	response, err := s.respondToResearchRequest(request.Context(), ResearchRequest{Transcript: transcript})
 	if err != nil {
 		writeJSON(writer, http.StatusBadGateway, map[string]string{"error": err.Error()})
 		return

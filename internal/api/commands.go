@@ -7,7 +7,15 @@ import (
 
 func isCloseCommand(transcript string) bool {
 	normalized := strings.ToLower(transcript)
-	phrases := []string{"close it", "close this", "okay close it", "hide jarvis"}
+	phrases := []string{
+		"close it",
+		"close this",
+		"okay close it",
+		"hide jarvis",
+		"band karo",
+		"hide karo",
+		"બંધ કરો",
+	}
 	for _, phrase := range phrases {
 		if strings.Contains(normalized, phrase) {
 			return true

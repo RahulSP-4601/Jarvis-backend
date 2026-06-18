@@ -1,11 +1,19 @@
 package ai
 
+type ResearchRequest struct {
+	Transcript      string
+	Locale          string
+	AcceptedLocales []string
+}
+
 type ResearchResult struct {
-	Title          string   `json:"title"`
-	Summary        string   `json:"summary"`
-	KeyFindings    []string `json:"key_findings"`
-	Recommendation string   `json:"recommendation"`
-	ImageQueries   []string `json:"image_queries"`
+	Title           string   `json:"title"`
+	Summary         string   `json:"summary"`
+	SpokenAnswer    string   `json:"spoken_answer"`
+	KeyFindings     []string `json:"key_findings"`
+	Recommendation  string   `json:"recommendation"`
+	FollowUpPrompts []string `json:"follow_up_prompts"`
+	ImageQueries    []string `json:"image_queries"`
 }
 
 type deepgramResponse struct {
