@@ -33,6 +33,9 @@ func (s *Server) Handler() http.Handler {
 }
 
 func (s *Server) registerRoutes() {
+	s.mux.HandleFunc("GET /", s.handleRoot)
+	s.mux.HandleFunc("GET /favicon.ico", s.handleNoContent)
+	s.mux.HandleFunc("GET /favicon.png", s.handleNoContent)
 	s.mux.HandleFunc("GET /health", s.handleHealth)
 	s.mux.HandleFunc("POST /v1/bootstrap", s.handleBootstrap)
 	s.mux.HandleFunc("POST /v1/research", s.handleResearch)

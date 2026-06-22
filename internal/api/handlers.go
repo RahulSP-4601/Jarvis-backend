@@ -15,6 +15,18 @@ func (s *Server) handleHealth(writer http.ResponseWriter, _ *http.Request) {
 	writeJSON(writer, http.StatusOK, map[string]string{"status": "ok"})
 }
 
+func (s *Server) handleRoot(writer http.ResponseWriter, _ *http.Request) {
+	writeJSON(writer, http.StatusOK, map[string]string{
+		"service": "jarvis-backend",
+		"status":  "ok",
+		"docs":    "/health",
+	})
+}
+
+func (s *Server) handleNoContent(writer http.ResponseWriter, _ *http.Request) {
+	writer.WriteHeader(http.StatusNoContent)
+}
+
 func (s *Server) handleResearch(writer http.ResponseWriter, request *http.Request) {
 	var payload ResearchRequest
 	if err := json.NewDecoder(request.Body).Decode(&payload); err != nil {
